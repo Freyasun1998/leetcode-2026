@@ -30,16 +30,17 @@ class Solution:
         return "".join(result)
 
 
-if __name__ == "__main__":
-    s = Solution().mergeAlternately
-    tests = [
-        (("abc", "pqr"), "apbqcr"),
-        (("ab", "pqrs"), "apbqrs"),
-        (("abcd", "pq"), "apbqcd"),
-        (("a", "z"), "az"),
-    ]
-    for (w1, w2), want in tests:
-        got = s(w1, w2)
-        assert got == want, (w1, w2, got, want)
-    print("All tests passed:", len(tests), "cases")
+def test_merge_alternately_equal_length() -> None:
+    assert Solution().mergeAlternately("abc", "pqr") == "apbqcr"
 
+
+def test_merge_alternately_word2_longer() -> None:
+    assert Solution().mergeAlternately("ab", "pqrs") == "apbqrs"
+
+
+def test_merge_alternately_word1_longer() -> None:
+    assert Solution().mergeAlternately("abcd", "pq") == "apbqcd"
+
+
+def test_merge_alternately_single_characters() -> None:
+    assert Solution().mergeAlternately("a", "z") == "az"
